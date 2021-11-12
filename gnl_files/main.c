@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <sys/file.h>
+#include <sys/types.h>
 
 char *example(int fd)
 {
