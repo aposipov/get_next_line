@@ -6,7 +6,7 @@
 /*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:26:38 by lchristi          #+#    #+#             */
-/*   Updated: 2021/11/13 16:23:00 by lchristi         ###   ########.fr       */
+/*   Updated: 2021/11/13 16:56:51 by lchristi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,35 +34,39 @@ size_t	gnl_strlen(const char *str)
 char	*gnl_strjoin(const char *str1, const char *str2)
 {
 	char	*str;
-	//char	*result;
-	int	n;
-	int k;
+	int	i;
+	int j;
 	
-	n = 0;
-	k = 0;
-	//n = gnl_strlen(str1) + gnl_strlen(str2) + 1;
+	i = 0;
+	j = 0;
+	if (!str1 || !str2)
+		return (NULL);
 	str = malloc(sizeof(char) * (gnl_strlen(str1) + gnl_strlen(str2) + 1));
 	if (!str)
 		return (NULL);
-	//result = str;
-	while (str1[n])
+	while (str1[i])
 	{
-		str[n] = str1[n];
-		n++;
+		str[i] = str1[i];
+		i++;
 	}
-	while (str2[k])
+	while (str2[j])
 	{
-		str[n] = str2[k];
-		n++;
-		k++;
+		str[i] = str2[j];
+		i++;
+		j++;
 	}
-	str[n] = '\0';
+	str[i] = '\0';
 	return (str);
+}
+
+char *gnl_strchr(const char *str, int c)
+{
+	
 }
 
 int main()
 {
 	printf("%ld\n", gnl_strlen("qwertystring10\0\n"));
-	printf("%s\n", gnl_strjoin("123", "456789"));
+	printf("%s\n", gnl_strjoin("123", "qwerty"));
 	return (0);
 }
