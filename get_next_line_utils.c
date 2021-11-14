@@ -6,7 +6,7 @@
 /*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:26:38 by lchristi          #+#    #+#             */
-/*   Updated: 2021/11/13 16:56:51 by lchristi         ###   ########.fr       */
+/*   Updated: 2021/11/14 19:18:56 by lchristi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,7 @@ size_t	gnl_strlen(const char *str)
 
 	i = 0;
 	while (str[i])
-	{
 		i++;
-//		if (str[i] == '\0')
-//			i++;
-//		if (str[i] == '\n')
-//			i++;
-	}
 	return (i);
 }
 
@@ -64,9 +58,9 @@ char *gnl_strchr(const char *str, int c)
 	
 }
 
-int main()
-{
-	printf("%ld\n", gnl_strlen("qwertystring10\0\n"));
-	printf("%s\n", gnl_strjoin("123", "qwerty"));
-	return (0);
-}
+//int main()
+//{
+//	printf("%ld\n", gnl_strlen("qwertystring10\0\n"));
+//	printf("%s\n", gnl_strjoin("123", "qwerty"));
+//	return (0);
+//}
