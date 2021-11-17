@@ -1,30 +1,29 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <sys/types.h>
+#include <fcntl.h>
 
-char *example(int fd)
-{
-	char *b[10];
-	//int i = 0;
+//char *ft_get(int fd)
+//{
+//	static char	b[10];
 
-	read (fd, b, 9);
-	b[9] = '\0';
+//	read(fd, b, 9);
+//	b[9] = '\0';
 
-	//
-	//
-	//
-	//
-
-	return(*b);
-}
+//	return (b);
+//}
 
 int main ()
 {
 	int fd;
+	char buf[10];
+
 	fd = open("./test1.txt", O_RDONLY);
-	printf("%s\n", example(fd));
-	printf("%s\n", example(fd));
-	printf("%s\n", example(fd));
+	printf("%d\n", fd);
+	read(fd, buf, 9);
+	printf("%s\n", buf);
+	//printf("%s\n", ft_get(fd));
+	//printf("%s\n", example(fd));
+	//printf("%s\n", example(fd));
 	close(fd);
-	return(0);
+	return (0);
 }

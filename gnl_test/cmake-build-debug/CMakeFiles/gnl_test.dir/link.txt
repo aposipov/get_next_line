@@ -1,0 +1,1 @@
+/usr/bin/gcc -g   CMakeFiles/gnl_test.dir/get_next_line.c.o CMakeFiles/gnl_test.dir/get_next_line_utils.c.o  -o gnl_test 

@@ -6,7 +6,7 @@
 /*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:26:38 by lchristi          #+#    #+#             */
-/*   Updated: 2021/11/15 00:15:34 by lchristi         ###   ########.fr       */
+/*   Updated: 2021/11/15 18:30:49 by lchristi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ char	*gnl_strjoin(const char *str1, const char *str2)
 	str[i] = '\0';
 	return (str);
 }
+
+//ft_strdup()?
 
 //char *gnl_strchr(const char *str, int c)
 //{

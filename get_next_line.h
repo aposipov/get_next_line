@@ -6,7 +6,7 @@
 /*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:27:38 by lchristi          #+#    #+#             */
-/*   Updated: 2021/11/15 00:20:27 by lchristi         ###   ########.fr       */
+/*   Updated: 2021/11/15 10:58:52 by lchristi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 
 #ifndef BUFFER_SIZE
-#define BUFFER_SIZE 42
+# define BUFFER_SIZE 10
 #endif
 
 char *get_next_line(int fd);
