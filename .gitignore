@@ -52,6 +52,7 @@ Mkfile.old
 dkms.conf
 
 # clion
-.idea
+*.idea
+*.cmake
 cmake-build-debug
 CMakeLists.txt

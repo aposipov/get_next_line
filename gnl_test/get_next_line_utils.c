@@ -13,7 +13,7 @@ size_t	gnl_strlen(const char *s)
     return (i);
 }
 
-char	*gnl_strjoin(char const *str1, char const *str2)
+char	*gnl_strjoin(char *str1, char *str2)
 {
     char	*str;
     char	*dst;
@@ -37,42 +37,16 @@ char	*gnl_strjoin(char const *str1, char const *str2)
         while (*str2)
             *str++ = *str2++;
     *str = 0;
+    //free(str);
     return (dst);
 }
 
-
 char	*gnl_strchr(const char *s, int c)
 {
-    while (*s != '\0' && *s != (char)c) // ? \0
+    while (*s != '\0' && *s != (char)c)
         s++;
     if (*s == (char)c)
         return ((char *)s);
     else
         return (NULL);
-}
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-    char	*s;
-
-    s = malloc(nmemb * size);
-    if (!s)
-        return (NULL);
-    ft_bzero(s, nmemb * size);
-    return (s);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-    ft_memset(s, 0, n);
-}
-
-void	*ft_memset(void *s, int c, size_t n)
-{
-    size_t	i;
-
-    i = 0;
-    while (i < n)
-        ((unsigned char *)s)[i++] = (unsigned char)c;
-    return (s);
 }
