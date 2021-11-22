@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:24:32 by lchristi          #+#    #+#             */
-/*   Updated: 2021/11/22 17:21:59 by lchristi         ###   ########.fr       */
+/*   Updated: 2021/11/22 17:46:28 by lchristi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*gnl_newline(char *buffer)
 {
@@ -98,7 +98,7 @@ char	*gnl_reading(char *buffer, char *line, int fd)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer[1024];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
@@ -106,10 +106,10 @@ char	*get_next_line(int fd)
 	line = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!line)
 		return (NULL);
-	buffer = gnl_reading(buffer, line, fd);
-	if (!buffer)
+	buffer[fd] = gnl_reading(buffer[fd], line, fd);
+	if (!buffer[fd])
 		return (NULL);
-	line = gnl_line(buffer);
-	buffer = gnl_newline(buffer);
+	line = gnl_line(buffer[fd]);
+	buffer[fd] = gnl_newline(buffer[fd]);
 	return (line);
 }
