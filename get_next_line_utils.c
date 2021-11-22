@@ -6,7 +6,7 @@
 /*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:26:38 by lchristi          #+#    #+#             */
-/*   Updated: 2021/11/22 14:02:45 by lchristi         ###   ########.fr       */
+/*   Updated: 2021/11/22 16:36:10 by lchristi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ char	*gnl_strjoin(char *str1, char *str2)
 		str[i + j] = str2[j];
 		j++;
 	}
-	str[i] = '\0';
-	//free(str1);
+	str[i + j] = '\0';
+	free(str1);
 	return (str);
 }
 

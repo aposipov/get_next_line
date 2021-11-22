@@ -6,7 +6,7 @@
 /*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:24:32 by lchristi          #+#    #+#             */
-/*   Updated: 2021/11/22 14:00:41 by lchristi         ###   ########.fr       */
+/*   Updated: 2021/11/22 17:08:27 by lchristi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*gnl_line(char *buffer)
 	int		i;
 
 	i = 0;
-	if (!buffer)
+	if (!buffer[i])
 		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
@@ -76,6 +76,11 @@ char	*gnl_reading(char *buffer, char *line, int fd)
 	int	br;
 
 	br = 1;
+	if (!buffer)
+	{
+		buffer = (char *)malloc(sizeof(char) * 1);
+		buffer[0] = '\0';
+	}
 	while (br)
 	{
 		br = read(fd, line, BUFFER_SIZE);
@@ -99,8 +104,8 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*line;
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
-		return (NULL);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
 	line = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!line)
 		return (NULL);
