@@ -6,7 +6,7 @@
 /*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:27:38 by lchristi          #+#    #+#             */
-/*   Updated: 2021/11/15 10:58:52 by lchristi         ###   ########.fr       */
+/*   Updated: 2021/11/22 12:42:12 by lchristi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
-char *get_next_line(int fd);
-size_t gnl_strlen(const char *str);
-char *gnl_strjoin(const char *str1, const char *str2);
+char	*get_next_line(int fd);
+size_t	gnl_strlen(const char *str);
+char	*gnl_strjoin(char *str1, char *str2);
+char	*gnl_strchr(const char *s, int c);
 
 #endif

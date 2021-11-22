@@ -102,21 +102,21 @@ char *get_next_line(int fd)
     return (line);
 }
 
-int main()
-{
-    int fd;
-
-    //fd = open("text.txt", O_RDONLY);
-    fd = open("text_0.txt", O_RDONLY);
-    //printf("fd = %d\n\n", fd);
-    //while (fd != 0)
-    printf("%s", get_next_line(fd));
-    printf("%s", get_next_line(fd));
-    printf("%s", get_next_line(fd));
-    printf("%s", get_next_line(fd));
-    //get_next_line(fd);
-    //get_next_line(fd);
-    //get_next_line(fd);
-    close(fd);
-    return (0);
-}
+//int main()
+//{
+//    int fd;
+//
+//    //fd = open("text.txt", O_RDONLY);
+//    fd = open("text_0.txt", O_RDONLY);
+//    //printf("fd = %d\n\n", fd);
+//    //while (fd != 0)
+//    printf("%s", get_next_line(fd));
+//    printf("%s", get_next_line(fd));
+//    printf("%s", get_next_line(fd));
+//    printf("%s", get_next_line(fd));
+//    //get_next_line(fd);
+//    //get_next_line(fd);
+//    //get_next_line(fd);
+//    close(fd);
+//    return (0);
+//}

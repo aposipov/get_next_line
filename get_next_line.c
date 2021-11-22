@@ -6,7 +6,7 @@
 /*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:24:32 by lchristi          #+#    #+#             */
-/*   Updated: 2021/11/15 11:09:21 by lchristi         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:00:41 by lchristi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,132 +15,99 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-char	*get_next_line(int fd)
+char	*gnl_newline(char *buffer)
 {
-	static char	b[BUFFER_SIZE + 1];
-	static	int i;
-	static int count_lines;
+	char	*line;
+	int		i;
 	int		j;
-	char	*word;
-	char	*word2;
-	char	*result;
-	long	count;
 
-	if (b[i] == '\n')
-		i++;
-	
-	if (b[i] == '\0')
-	{
-		count = read(fd, b, BUFFER_SIZE);
-	    b[count] = '\0';
-	//	printf("new buffer:%s\n", b);
-		i = 0;
-	}
+	i = 0;
 	j = 0;
-	while (b[i + j] && b[i + j] != '\n')
-	{
-		//printf("%c", b[i]);
-		j++;
-	}
-	//j += (b[i + j] == '\n');
-	word = malloc(sizeof(j) + 1 + sizeof(b[i + j] == '\n'));
-	if (!word)
+	if (!buffer)
 		return (NULL);
-	//printf("\n");
-	j = 0;
-	while (b[i] && b[i] != '\n')
-	{
-		word[j] = b[i];
-		j++;
+	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	}
-	if (b[i] == '\n')
-		word[j++] = '\n';
-	word[j] = '\0';
-	while (b[i] != '\n')
+	if (!buffer[i])
 	{
-		count = read(fd, b, BUFFER_SIZE);
-		b[count] = '\0';
-		//
-		i = 0;
-		while (b[i + j] && b[i + j] != '\n')
-		{
-			//printf("%c", b[i]);
-			j++;
-		}
-		//j += (b[i + j] == '\n');
-		word2 = malloc(sizeof(j) + 1 + sizeof(b[i + j] == '\n'));
-		if (!word2)
-			return (NULL);
-		j = 0;
-		while (b[i] && b[i] != '\n')
-		{
-			word2[j] = b[i];
-			j++;
-			i++;
-		}
-		if (b[i] == '\n')
-			word2[j++] = '\n'; 
-		word2[j] = '\0';
-		result = gnl_strjoin(word, word2);
-		free(word);
-		free(word2);
-		word = result;
-
-	}		
-	printf("%s\n", word);
-	//printf("%s\n", word2);
-	free(word);
-	count_lines++;
-	return (b);
+		free(buffer);
+		return (NULL);
+	}
+	line = (char *)malloc(sizeof(char) * (gnl_strlen(buffer) - i + 1));
+	if (!line)
+		return (NULL);
+	i++;
+	while (buffer[i])
+		line[j++] = buffer[i++];
+	line[j] = '\0';
+	free(buffer);
+	return (line);
 }
 
-int	main(void)
+char	*gnl_line(char *buffer)
 {
-	int	fd;
+	char	*line;
+	int		i;
 
-	fd = open ("./gnl_files/test1.txt", O_RDONLY);
-	//while (fd)
-	//	get_next_line(fd);
-	
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
+	i = 0;
+	if (!buffer)
+		return (NULL);
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	line = (char *)malloc(sizeof(char) * (i + 2));
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+	{
+		line[i] = buffer[i];
+		i++;
+	}
+	if (buffer[i] == '\n')
+	{
+		line[i] = buffer[i];
+		i++;
+	}
+	line[i] = '\0';
+	return (line);
+}
 
-	//printf("%s\n", get_next_line(fd));
-	
-	close(fd);
-	return (0);
+char	*gnl_reading(char *buffer, char *line, int fd)
+{
+	int	br;
+
+	br = 1;
+	while (br)
+	{
+		br = read(fd, line, BUFFER_SIZE);
+		if (br < 0)
+		{
+			free(buffer);
+			free(line);
+			return (NULL);
+		}
+		line[br] = '\0';
+		buffer = gnl_strjoin(buffer, line);
+		if (gnl_strchr(buffer, '\n'))
+			break ;
+	}
+	free(line);
+	return (buffer);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*buffer;
+	char		*line;
+
+	if (BUFFER_SIZE <= 0 || fd < 0)
+		return (NULL);
+	line = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!line)
+		return (NULL);
+	buffer = gnl_reading(buffer, line, fd);
+	if (!buffer)
+		return (NULL);
+	line = gnl_line(buffer);
+	buffer = gnl_newline(buffer);
+	return (line);
 }
